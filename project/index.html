@@ -1,0 +1,1494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THUNDER - Gaming Review Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #dd9f49 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        
+        .header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo::before {
+            content: "🎮";
+            font-size: 28px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: rgb(244, 244, 244);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ff6b6b;
+        }
+
+        .sign-up-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: rgb(255, 255, 255);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.3s;
+        }
+
+        .sign-up-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 48px;
+            color: rgb(248, 242, 242);
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .hero-text p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 18px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background: rgb(245, 242, 242);
+            color: #e98d0b;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: rgb(240, 232, 232);
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .btn-primary:hover, .btn-secondary:hover {
+            transform: translateY(-2px);
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .game-card-hero {
+            background: rgb(239, 235, 235);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .game-card-hero img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .rating-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #4dabf7;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 15px;
+            font-weight: bold;
+        }
+
+        .discount-badge {
+            position: absolute;
+            bottom: 15px;
+            left: 15px;
+            background: #ff6b6b;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 15px;
+            font-weight: bold;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        
+        .games-section {
+            padding: 80px 0;
+            background: rgb(216, 207, 207);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .section-subtitle {
+            color: #ff6b6b;
+            font-size: 14px;
+            text-transform: uppercase;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .view-all-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: rgb(246, 242, 242);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.3s;
+        }
+
+        .view-all-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .game-card {
+            background: rgb(253, 224, 201);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .game-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .game-card-content {
+            padding: 20px;
+        }
+
+        .game-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .game-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .game-rating {
+            background: #324bec;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .game-category {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .explore-btn {
+            background: linear-gradient(45deg, #b02209, #8c5a04);
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            transition: transform 0.3s;
+        }
+
+        .explore-btn:hover {
+            transform: scale(1.1);
+        }
+
+       
+        .game-detail {
+            display: none;
+            padding: 40px 0;
+            background: rgb(245, 247, 245) 
+            
+        }
+
+        .game-detail.active {
+            display: block;
+        }
+
+        .detail-header {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .detail-image {
+            border-radius: 0px;
+            overflow: hidden;
+            box-shadow: 1 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .detail-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+   
+
+        .detail-info h1 {
+            font-size: 36px;
+            color: #030000;
+            margin-bottom: 20px;
+        }
+
+        .detail-meta {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .detail-badge {
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .rating-detail {
+            background: #4dabf7;
+            color: white;
+        }
+
+        .category-detail {
+            background: #51cf66;
+            color: white;
+        }
+
+        .year-detail {
+            background: #ffd43b;
+            color: #333;
+        }
+     
+        .detail-description {
+            color: #666;
+            line-height: 1.8;
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+
+        .detail-specs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .spec-item {
+            background: #e4e8ec;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .spec-label {
+            font-weight: bold;
+            color: #110303;
+            margin-bottom: 5px;
+        }
+
+        .spec-value {
+            
+            color: #0f0e0e;
+        }
+
+        .back-btn {
+            background: #02090f;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.3s;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        
+        .newsletter {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #844f37 0%, #9b7c73 100%);
+        }
+
+        .newsletter-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .newsletter-text h2 {
+            color: white;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .newsletter-text p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .newsletter-form {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .newsletter-form h3 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .newsletter-form input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .newsletter-form button {
+            width: 100%;
+            background: linear-gradient(45deg, #a41515, #992f2f);
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .newsletter-form button:hover {
+            transform: translateY(-2px);
+        }
+
+        
+        .footer {
+            background: #333;
+            color: rgb(238, 232, 232);
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-text h1 {
+                font-size: 32px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .detail-header {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+       
+        .auth-modal-overlay {
+            position: fixed;
+            top: 100px;
+            left: 0;
+            width: 100%;
+            height: 500px;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .auth-modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .auth-modal {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            max-width: 350px;
+            width: 90%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transform: translateY(-50px);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .auth-modal-overlay.active .auth-modal {
+            transform: translateY(0);
+        }
+
+        .auth-modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: #666;
+            transition: color 0.3s;
+        }
+
+        .auth-modal-close:hover {
+            color: #ff6b6b;
+        }
+
+        .auth-tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .auth-tab {
+            flex: 1;
+            padding: 12px;
+            text-align: center;
+            background: none;
+            border: none;
+            font-size: 16px;
+            font-weight: bold;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .auth-tab.active {
+            color: #667eea;
+        }
+
+        .auth-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(45deg, #2f35ec, #764ba2);
+        }
+
+        .auth-form {
+            display: none;
+        }
+
+        .auth-form.active {
+            display: block;
+        }
+
+        .auth-form h2 {
+            text-align: center;
+            color: #100f0f;
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #bb7a11;
+        }
+
+        .auth-submit-btn {
+            width: 100%;
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            transition: transform 0.3s;
+            margin-top: 8px;
+        }
+
+        .auth-submit-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .auth-switch {
+            text-align: center;
+            margin-top: 15px;
+            color: #666;
+            font-size: 13px;
+        }
+
+        .auth-switch span {
+            color: #4317e2;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .auth-switch span:hover {
+            color: #6bfff5;
+        }
+
+        .social-login {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .social-login p {
+            color: #cf0808;
+            margin-bottom: 12px;
+            font-size: 13px;
+        }
+
+        .social-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .social-btn {
+            flex: 1;
+            padding: 10px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .social-btn:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+        }
+
+        .google-btn {
+            color: #db4437;
+        }
+
+        .facebook-btn {
+            color: #4267B2;
+        }
+
+        .twitter-btn {
+            color: #1DA1F2;
+        }
+    </style>
+</head>
+<body>
+    
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">THUNDER</div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#games">Our Games</a></li>
+                    <li><a href="#reviews">Product Details</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                </ul>
+                <button class="sign-up-btn">Sign Up</button>
+            </nav>
+        </div>
+    </header>
+
+    
+    <main id="main-content">
+        
+        <section class="hero" id="home">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1>BEST GAMING SITE EVER!</h1>
+                        <p>Thunder Gaming platform  is free for all user and you get details about all games  </p>
+                        <div class="hero-buttons">
+                            <button class="btn-primary">Browse Now</button>
+                            <button class="btn-secondary">Discover More</button>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        <div class="game-card-hero">
+                            <img src="assets/game.jpg" alt="Assassin's Creed">
+                            <div class="rating-badge">9.2</div>
+                            <div class="discount-badge">-40%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+        <section class="features">
+            <div class="container">
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">💾</div>
+                        <h3>FREE STORAGE</h3>
+                        <p>Unlimited cloud storage for all your gaming data and progress.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">👤</div>
+                        <h3>USER MORE</h3>
+                        <p>Connect with millions of gamers worldwide and share your experiences.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3>REPLY READY</h3>
+                        <p>Instant responses and real-time gaming support whenever you need it.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📱</div>
+                        <h3>EASY LAYOUT</h3>
+                        <p>Intuitive design that makes gaming and browsing a breeze.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+        <section class="games-section" id="games">
+            <div class="container">
+                <div class="section-header">
+                    <div>
+                        <div class="section-subtitle">TRENDING</div>
+                        <h2 class="section-title">Trending Games</h2>
+                    </div>
+                    <button class="view-all-btn">VIEW ALL</button>
+                </div>
+                <div class="games-grid">
+                    <div class="game-card" onclick="showGameDetail('assassins-creed')">
+                        <img src="assets/assassinscreed2.jpg" alt="Assassin's Creed">
+                        <div class="game-card-content">
+                            <div class="game-title">Assassin's Creed</div>
+                            <div class="game-meta">
+                                <span class="game-category">Action</span>
+                                <span class="game-rating">9.2</span>
+                                
+                            </div>
+                        </div>
+                        <button class="explore-btn">EXPLORE</button>
+                        <a href="https://store.steampowered.com/app/812140/?snr=1_5_9__205" download>
+    <button class="explore-btn" style="right: 110px; background: #da800c;">DOWNLOAD</button>
+</a>
+
+                    </div>
+                    <div class="game-card" onclick="showGameDetail('warframe')">
+                        <img src="assets/warframe.jpg" alt="Warframe">
+                        <div class="game-card-content">
+                            <div class="game-title">Warframe</div>
+                            <div class="game-meta">
+                                <span class="game-category">Sci-Fi</span>
+                                <span class="game-rating">8.8</span>
+                            </div>
+                        </div>
+                        <button class="explore-btn">EXPLORE</button>
+                        <a href="https://store.steampowered.com/app/230410/?snr=1_5_9__205" download>
+    <button class="explore-btn" style="right: 110px; background: #da800c;">DOWNLOAD</button>
+</a>
+                    </div>
+                    <div class="game-card" onclick="showGameDetail('cyberpunk')">
+                        <img src="assets/cyberpunk.jpg" alt="Cyberpunk 2077">
+                        <div class="game-card-content">
+                            <div class="game-title">Cyberpunk 2077</div>
+                            <div class="game-meta">
+                                <span class="game-category">RPG</span>
+                                <span class="game-rating">8.5</span>
+                            </div>
+                        </div>
+                        <button class="explore-btn">EXPLORE</button>
+                        <a href="https://store.steampowered.com/app/1091500/?snr=1_5_9__205" download>
+    <button class="explore-btn" style="right: 110px; background: #da800c;">DOWNLOAD</button>
+</a>
+                    </div>
+                    <div class="game-card" onclick="showGameDetail('destiny')">
+                        <img src="assets/destiny2.webp" alt="Destiny 2">
+                        <div class="game-card-content">
+                            <div class="game-title">Destiny 2</div>
+                            <div class="game-meta">
+                                <span class="game-category">FPS</span>
+                                <span class="game-rating">8.7</span>
+                            </div>
+                        </div>
+                        <button class="explore-btn">EXPLORE</button>
+                        <a href="https://store.steampowered.com/app/1085660/?snr=1_5_9__205" download>
+    <button class="explore-btn" style="right: 110px; background: #da800c;">DOWNLOAD</button>
+</a>
+                    </div>
+                    <div class="game-card" onclick="showGameDetail('Red Dead Redemption 2')">
+                        <img src="assets/rdr.jpg" alt="Red Dead Redemption 2">
+                        <div class="game-card-content">
+                            <div class="game-title">Red Dead Redemption 2</div>
+                            <div class="game-meta">
+                                <span class="game-category">FPS</span>
+                                <span class="game-rating">8.7</span>
+                            </div>
+                        </div>
+                        <button class="explore-btn">EXPLORE</button>
+                        <a href="https://store.steampowered.com/app/1174180/?snr=1_5_9__205" download>
+    <button class="explore-btn" style="right: 110px; background: #da800c;">DOWNLOAD</button>
+</a>
+                    </div>
+                </div>
+
+               
+                <div class="section-header">
+                    <div>
+                        <div class="section-subtitle">TOP GAMES</div>
+                        <h2 class="section-title">Most Played</h2>
+                    </div>
+                    <button class="view-all-btn">VIEW ALL</button>
+                </div>
+                <div class="games-grid">
+                    <div class="game-card" onclick="showGameDetail('apex-legends')">
+                        <img src="assets/apexlegends.jpg" alt="Apex Legends">
+                        <div class="game-card-content">
+                            <div class="game-title">Apex Legends</div>
+                            <div class="game-meta">
+                                <span class="game-category">Battle Royale</span>
+                                <span class="game-rating">9.1</span>
+                            </div>
+                        </div>
+                        <button class="explore-btn">EXPLORE</button>
+                        <a href="https://store.steampowered.com/app/1172470/?snr=1_5_9__205" download>
+    <button class="explore-btn" style="right: 110px; background: #da800c;">DOWNLOAD</button>
+</a>
+                    </div>
+                    <div class="game-card" onclick="showGameDetail('pubg')">
+                        <img src="assets/pubg2.jpg" alt="PUBG">
+                        <div class="game-card-content">
+                            <div class="game-title">PUBG</div>
+                            <div class="game-meta">
+                                <span class="game-category">Battle Royale</span>
+                                <span class="game-rating">8.9</span>
+                            </div>
+                        </div>
+                        <button class="explore-btn">EXPLORE</button>
+                        <a href="https://store.steampowered.com/app/578080/?snr=1_5_9__205" download>
+    <button class="explore-btn" style="right: 110px; background: #da800c;">DOWNLOAD</button>
+</a>
+                    </div>
+                    <div class="game-card" onclick="showGameDetail('fortnite')">
+                        <img src="assets/fortnite.jpg" alt="Fortnite">
+                        <div class="game-card-content">
+                            <div class="game-title">Fortnite</div>
+                            <div class="game-meta">
+                                <span class="game-category">Battle Royale</span>
+                                <span class="game-rating">8.6</span>
+                            </div>
+                        </div>
+                        <button class="explore-btn">EXPLORE</button>
+                        <a href="https://store.epicgames.com/en-US/p/fortnite" download>
+    <button class="explore-btn" style="right: 110px; background: #da800c;">DOWNLOAD</button>
+                        </a>
+                        </div>
+                    <div class="game-card" onclick="showGameDetail('valorant')">
+                        <img src="assets/valorant.jpg" alt="Valorant">
+                        <div class="game-card-content">
+                            <div class="game-title">Valorant</div>
+                            <div class="game-meta">
+                                <span class="game-category">Tactical FPS</span>
+                                <span class="game-rating">9.0</span>
+                            </div>
+                        </div>
+                        <button class="explore-btn">EXPLORE</button>
+                        <a href="https://store.epicgames.com/en-US/p/valorant" download>
+    <button class="explore-btn" style="right: 110px; background: #da800c;">DOWNLOAD</button>
+</a>
+                        </div>
+                    <div class="game-card" onclick="showGameDetail('Resident Evil 4')">
+                        <img src="assets/re1.jpg" alt="Resident Evil 4">
+                        <div class="game-card-content">
+                            <div class="game-title">Resident Evil 4</div>
+                            <div class="game-meta">
+                                <span class="game-category">Survival Horror</span>
+                                <span class="game-rating">9.0</span>
+                            </div>
+                        </div>
+                        <button class="explore-btn">EXPLORE</button>
+                        <a href="https://store.steampowered.com/app/2050650/?snr=1_5_9__205" download>
+    <button class="explore-btn" style="right: 110px; background: #da800c;">DOWNLOAD</button>
+</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+        <section class="newsletter">
+            <div class="container">
+                <div class="newsletter-content">
+                    <div class="newsletter-text">
+                        <h2>Go Pre-Order Buy & Get Best Prices For You!</h2>
+                        <p>Best Games coming soon!!</p>
+                        <button class="btn-primary">SHOP NOW</button>
+                    </div>
+                    <div class="newsletter-form">
+                        <h3>Feedback Address</h3>
+                        <input type="email" placeholder="Your Name...">
+                        
+                       
+                        <input type="email" placeholder="Your email...">
+                        <br>
+                         <h3>Overall</h3>
+                         <input type="email" placeholder="1 TO 70 Letters...">
+                       
+                         <button type="submit">SUBMIT</button>
+                        
+               
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+    </main>
+
+    
+    <div class="game-detail" id="game-detail">
+        <div class="container">
+            <button class="back-btn" onclick="showMainContent()">← Back to Games</button>
+            <div class="detail-content">
+                
+            </div>
+        </div>
+    </div>
+
+    
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 THUNDER Gaming Company. All rights reserved. Design: Navinkumar</p>
+        </div>
+    </footer>
+
+    
+    <div class="auth-modal-overlay" id="authModal">
+        <div class="auth-modal">
+            <button class="auth-modal-close" onclick="closeAuthModal()">&times;</button>
+            
+            <div class="auth-tabs">
+                <button class="auth-tab active" onclick="switchAuthTab('login')">Login</button>
+                <button class="auth-tab" onclick="switchAuthTab('signup')">Sign Up</button>
+            </div>
+
+            
+            <form class="auth-form active" id="loginForm">
+                <h2>Welcome Back!</h2>
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <button type="submit" class="auth-submit-btn">Login</button>
+                
+                <div class="auth-switch">
+                    Don't have an account? <span onclick="switchAuthTab('signup')">Sign Up</span>
+                </div>
+
+                <div class="social-login">
+                    <p>Or login with</p>
+                    <div class="social-buttons">
+                        <button type="button" class="social-btn google-btn">Google</button>
+                        <button type="button" class="social-btn facebook-btn">Facebook</button>
+                        <button type="button" class="social-btn twitter-btn">Twitter</button>
+                    </div>
+                </div>
+            </form>
+
+            
+            <form class="auth-form" id="signupForm">
+                <h2>Join THUNDER Gaming!</h2>
+                <div class="form-group">
+                    <label for="signupName">Full Name</label>
+                    <input type="text" id="signupName" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupEmail">Email</label>
+                    <input type="email" id="signupEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupPassword">Password</label>
+                    <input type="password" id="signupPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupConfirmPassword">Confirm Password</label>
+                    <input type="password" id="signupConfirmPassword" required>
+                </div>
+                <button type="submit" class="auth-submit-btn">Create Account</button>
+                
+                <div class="auth-switch">
+                    Already have an account? <span onclick="switchAuthTab('login')">Login</span>
+                </div>
+
+                <div class="social-login">
+                    <p>Or sign up with</p>
+                    <div class="social-buttons">
+                        <button type="button" class="social-btn google-btn">Google</button>
+                        <button type="button" class="social-btn facebook-btn">Facebook</button>
+                        <button type="button" class="social-btn twitter-btn">Twitter</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const gameData = {
+            'assassins-creed': {
+                title: "Assassin's Creed Valhalla",
+                image: "assets/assassinscreed3.jpg",
+             
+                rating: "9.2",
+                category: "Action/Adventure",
+                year: "2020",
+                description: "Become Eivor, a legendary Viking raider on a quest for glory. Explore England's Dark Ages as you raid your enemies, grow your settlement, and build your political power. Experience a visceral, brutal combat system that lets you dual-wield axes, swords, and even shields against fierce, relentless foes. Grow and customize your own settlement by recruiting new clan members and building upgradable structures. Get immersed in a captivating Viking experience through choice-driven dialogue, epic scenes, and diverse side-quests.",
+               
+                specs: {
+                    developer: "Ubisoft Montreal",
+                    publisher: "Ubisoft",
+                    platform: "PC, PlayStation, Xbox",
+                    genre: "Action RPG",
+                    releaseDate: "November 10, 2020",
+                    playtime:"36 hours"
+                  
+                }
+            },
+            'warframe': {
+                title: "Warframe",
+                image: "assets/warframe2.jpg",
+                rating: "8.8",
+                category: "Sci-Fi/Action",
+                year: "2013",
+                description: "Warframe is a free-to-play online action game set in an evolving sci-fi world. Join up to 3 friends in cooperative gameplay, or compete in PvP battles. Customize your Warframe and weapons to match your playstyle. Explore the vast solar system and discover the secrets of the Origin System. With over 40 unique Warframes to collect, each with their own abilities and weapons, there's always something new to discover.",
+                specs: {
+                    developer: "Digital Extremes",
+                    publisher: "Digital Extremes",
+                    platform: "PC, PlayStation, Xbox, Nintendo Switch",
+                    genre: "Third-person Shooter",
+                    releaseDate: "March 25, 2013",
+                    playTime: "Endless"
+                }
+            },
+            'cyberpunk': {
+                title: "Cyberpunk 2077",
+                image: "assets/cyburpunk2.jpg",
+                rating: "8.5",
+                category: "RPG/Action",
+                year: "2020",
+                description: "Cyberpunk 2077 is an open-world, action-adventure RPG set in the megalopolis of Night City, where you play as a cyberpunk mercenary wrapped up in a do-or-die fight for survival. Improved and featuring all-new free additional content, customize your character and playstyle as you take on jobs, build a reputation, and unlock upgrades. The relationships you forge and the choices you make will shape the story and the world around you.",
+                specs: {
+                    developer: "CD Projekt RED",
+                    publisher: "CD Projekt",
+                    platform: "PC, PlayStation, Xbox, Stadia",
+                    genre: "Action RPG",
+                    releaseDate: "December 10, 2020",
+                    playTime: "100+ hours"
+                }
+            },
+            'destiny': {
+                title: "Destiny 2",
+                image: "assets/destiny3.webp",
+               
+                rating: "8.7",
+                category: "FPS/MMO",
+                year: "2017",
+                description: "Destiny 2 is a free-to-play online-only multiplayer first-person shooter video game. The game features a multiplayer 'shared-world' environment with elements of role-playing games. Players assume the role of a Guardian, protectors of Earth's last safe city as they wield a power called Light to protect the Last City from different alien races. Guardians are tasked with reviving a celestial being called the Traveler, while journeying to different planets to investigate and destroy the alien threats before humanity is completely wiped out.",
+                specs: {
+                    developer: "Bungie",
+                    publisher: "Bungie",
+                    platform: "PC, PlayStation, Xbox",
+                    genre: "First-person Shooter",
+                    releaseDate: "September 6, 2017",
+                    playTime: "endless"
+            
+                 
+                }
+
+            },
+            'Red Dead Redemption 2': {
+                title: "Red Dead Redemption 2",
+                image: "assets/rdr5.jpg",
+                rating: "8.7",
+                category: "RPG,Action",
+                year: "2018",
+                description: "Red Dead Redemption 2 Set in a fictionalized version of the American West in 1899, RDR2 follows the story of outlaw Arthur Morgan, a senior member of the Van der Linde gang. After a botched robbery forces the gang to flee, they must constantly rob and fight to survive while being pursued by federal agents and bounty hunters. The game explores the decline of the Wild West era and includes themes of loyalty, honor, and redemption. ",
+                specs: {
+                    developer: "Rockstar Games",
+                    publisher: "Rockstar Games",
+                    platform: "PC, PlayStation, Xbox",
+                    genre: "Action,Adventure,Open World",
+                    releaseDate: "September 6, 2018",
+                    playTime: "Endless"
+                }
+            },
+            'apex-legends': {
+                title: "Apex Legends",
+                image: "assets/apexlegends2.webp",
+                rating: "9.1",
+                category: "Battle Royale",
+                year: "2019",
+                description: "Apex Legends is the award-winning, free-to-play Hero Shooter from Respawn Entertainment. Master an ever-growing roster of legendary characters with powerful abilities, and experience strategic squad play and innovative gameplay in the next evolution of Hero Shooter and Battle Royale. Choose from a diverse cast of Legends — each with their own unique personality, strengths, and abilities — and forge alliances, settle scores, and leave your mark on the Kings Canyon.",
+                specs: {
+                    developer: "Respawn Entertainment",
+                    publisher: "Electronic Arts",
+                    platform: "PC, PlayStation, Xbox, Nintendo Switch",
+                    genre: "Battle Royale",
+                    releaseDate: "February 4, 2019",
+                    playTime: "Endless"
+                }
+            },
+            'pubg': {
+                title: "PUBG: Battlegrounds",
+                image: "assets/pubg4.webp",
+                rating: "8.9",
+                category: "Battle Royale",
+                year: "2017",
+                description: "PUBG: BATTLEGROUNDS is a battle royale that pits 100 players against each other. Outplay your opponents to become the lone survivor. Survive dynamic battlegrounds that force players into a shrinking play zone. Team up with friends in two-player Duos, four-player Squads, or go solo to be the last player standing. PUBG is realistic in approach; weapons, vehicles, and maps are inspired by real-world counterparts.",
+                specs: {
+                    developer: "PUBG Corporation",
+                    publisher: "PUBG Corporation",
+                    platform: "PC, PlayStation, Xbox, Mobile",
+                    genre: "Battle Royale",
+                    releaseDate: "December 20, 2017",
+                    playTime: "Endless"
+                }
+            },
+            'fortnite': {
+                title: "Fortnite",
+                image: "assets/fortnite2.jpg",
+                rating: "8.6",
+                category: "Battle Royale",
+                year: "2017",
+                description: "Fortnite is the completely free multiplayer game where you and your friends can jump into Battle Royale or Fortnite Creative. Download now and jump into the action. In Battle Royale, you'll compete against up to 99 other players to be the last one standing. Build your fort as you battle to be the last one standing. Jump in and squad up with friends around the world or in the same room!",
+                specs: {
+                    developer: "Epic Games",
+                    publisher: "Epic Games",
+                    platform: "PC, PlayStation, Xbox, Nintendo Switch, Mobile",
+                    genre: "Battle Royale",
+                    releaseDate: "July 25, 2017",
+                    playTime: "Endless"
+                }
+            },
+            'valorant': {
+                title: "Valorant",
+                image: "assets/valorant3.webp",
+                rating: "9.0",
+                category: "Tactical FPS",
+                year: "2020",
+                description: "Valorant is a free-to-play first-person tactical hero shooter developed and published by Riot Games. Blend your style and experience on a global, competitive stage. You have 13 rounds to attack and defend your side using sharp gunplay and tactical abilities. And, with one life per-round, you'll need to think faster than your opponent if you want to survive. Take on foes across Competitive and Unranked modes as well as Deathmatch and Spike Rush.",
+                specs: {
+                    developer: "Riot Games",
+                    publisher: "Riot Games",
+                    platform: "PC",
+                    genre: "Tactical FPS",
+                    releaseDate: "June 2, 2020",
+                    playTime: "Endless"
+                }
+            },
+             'Resident Evil 4': {
+                title: "Resident Evil 4",
+                image: "assets/re2.jpg",
+                rating: "9.0",
+                category: "Survival Horror",
+                year: "2023",
+                description: "Resident Evil 4 (2023) is a complete remake of the 2005 action-horror classic, updating its graphics, gameplay, and storyline for modern audiences. The game follows Agent Leon S. Kennedy on a mission to rescue the U.S. president's daughter from a secluded European village filled with parasite-infected villagers, but it has been reimagined with a darker, scarier atmosphere and new surprises, according to Resident Evil and PlayStation.  Resident Evil 4 (2023) is a complete remake of the 2005 action-horror classic, updating its graphics, gameplay, and storyline for modern audiences. The game follows Agent Leon S. Kennedy on a mission to rescue the U.S. president's daughter from a secluded European village filled with parasite-infected villagers, but it has been reimagined with a darker, scarier atmosphere and new surprises, according to Resident Evil and PlayStation.  ",
+                specs: {
+                    developer: "CAPCOM",
+                    publisher: "CAPCOM",
+                    platform: "PC",
+                    genre: "Survival Horror",
+                    releaseDate: "June 2, 2023",
+                    playTime: "Endless"
+                }
+            },
+        };
+
+        function showGameDetail(gameId) {
+            const game = gameData[gameId];
+            if (!game) return;
+
+            const mainContent = document.getElementById('main-content');
+            const gameDetail = document.getElementById('game-detail');
+            const detailContent = document.querySelector('.detail-content');
+
+            
+            mainContent.style.display = 'none';
+            gameDetail.classList.add('active');
+
+            
+            detailContent.innerHTML = `
+                <div class="detail-header">
+                    <div class="detail-image">
+                        <img src="${game.image}" alt="${game.title}">
+                    </div>
+                    <div class="detail-info">
+                        <h1>${game.title}</h1>
+                        <div class="detail-meta">
+                            <span class="detail-badge rating-detail">★ ${game.rating}</span>
+                            <span class="detail-badge category-detail">${game.category}</span>
+                            <span class="detail-badge year-detail">${game.year}</span>
+                        </div>
+                        <p class="detail-description">${game.description}</p>
+                        <div class="detail-specs">
+                            <div class="spec-item">
+                                <div class="spec-label">Developer</div>
+                                <div class="spec-value">${game.specs.developer}</div>
+                            </div>
+                            <div class="spec-item">
+                                <div class="spec-label">Publisher</div>
+                                <div class="spec-value">${game.specs.publisher}</div>
+                            </div>
+                            <div class="spec-item">
+                                <div class="spec-label">Platform</div>
+                                <div class="spec-value">${game.specs.platform}</div>
+                            </div>
+                            <div class="spec-item">
+                                <div class="spec-label">Genre</div>
+                                <div class="spec-value">${game.specs.genre}</div>
+                            </div>
+                            <div class="spec-item">
+                                <div class="spec-label">Release Date</div>
+                                <div class="spec-value">${game.specs.releaseDate}</div>
+                            </div>
+                            <div class="spec-item">
+                                <div class="spec-label">Play Time</div>
+                                <div class="spec-value">${game.specs.playTime}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+    
+            window.scrollTo(0, 0);
+        }
+
+        function showMainContent() {
+            const mainContent = document.getElementById('main-content');
+            const gameDetail = document.getElementById('game-detail');
+
+            
+            mainContent.style.display = 'block';
+            gameDetail.classList.remove('active');
+
+
+            window.scrollTo(0, 0);
+        }
+
+        
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        
+        document.querySelector('.newsletter-form button').addEventListener('click', function(e) {
+            e.preventDefault();
+            const email = document.querySelector('.newsletter-form input').value;
+            if (name) {
+                alert('Please enter your Name.');
+            } 
+            if(email) {
+                alert('Thank you for subscribing! You will receive gaming updates and exclusive offers.');
+                document.querySelector('.newsletter-form input').value = '';
+            }
+            else {
+                alert('Please enter your deatils.');
+            }
+        });
+
+        
+        document.querySelector('.sign-up-btn').addEventListener('click', function() {
+            openAuthModal('signup');
+        });
+
+        document.querySelectorAll('.game-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        function openAuthModal(tab = 'login') {
+            const modal = document.getElementById('authModal');
+            modal.classList.add('active');
+            switchAuthTab(tab);
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        function closeAuthModal() {
+            const modal = document.getElementById('authModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto'; 
+        }
+
+        function switchAuthTab(tab) {
+            
+            document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+            document.querySelector(`.auth-tab[onclick="switchAuthTab('${tab}')"]`).classList.add('active');
+            
+            
+            document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
+            document.getElementById(tab === 'login' ? 'loginForm' : 'signupForm').classList.add('active');
+        }
+
+        
+        document.getElementById('authModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeAuthModal();
+            }
+        });
+
+       
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            if (email && password) {
+               
+                alert('Login successful! Welcome back to THUNDER Gaming!');
+                closeAuthModal();
+                this.reset();
+            } else {
+                alert('Please fill in all fields.');
+            }
+        });
+
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('signupName').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            const confirmPassword = document.getElementById('signupConfirmPassword').value;
+            
+            if (name && email && password && confirmPassword) {
+                if (password === confirmPassword) {
+                    
+                    alert('Account created successfully! Welcome to THUNDER Gaming!');
+                    closeAuthModal();
+                    this.reset();
+                } else {
+                    alert('Passwords do not match.');
+                }
+            } else {
+                alert('Please fill in all fields.');
+            }
+        });
+
+        
+        document.querySelectorAll('.social-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const platform = this.textContent.toLowerCase();
+                alert(`${platform} login feature coming soon!`);
+            });
+        });
+
+        
+        const nav = document.querySelector('.nav-links');
+        const loginLi = document.createElement('li');
+        loginLi.innerHTML = '<a href="#" onclick="openAuthModal(\'login\'); return false;">Login</a>';
+        nav.appendChild(loginLi);
+    </script>
+</body>
+</html>
