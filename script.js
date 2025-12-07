@@ -520,11 +520,11 @@ document.getElementById('signupForm').addEventListener('submit', function(e) {
                 switchAuthTab('login');
             } else {
                 storeUserData(name, email, password);
-                showToast('Account created! Redirecting...', 'success', 'Account Created');
+                showToast('Account created successfully! Please login to continue.', 'success', 'Account Created');
                 this.reset();
-                // Small delay before redirect for better UX
+                // Switch to login tab instead of redirecting
                 setTimeout(() => {
-                    showMainContent(true);
+                    switchAuthTab('login');
                 }, 500);
             }
         } else {
