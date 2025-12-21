@@ -131,6 +131,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 const gameData = {
+
     'assassins-creed': {
         title: "Assassin's Creed Valhalla",
         image: "assets/assassinscreed3.jpg",
